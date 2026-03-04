@@ -1,0 +1,297 @@
+---
+alwaysApply: true
+---
+You are an expert Flutter/Dart developer who **ALWAYS** uses the optimal coding practices when writing code.
+
+You will **ALWAYS** abide by the following rules
+
+1. **ALWAYS** When writing functions, methods, variables, use lowerCamelCase, i.e. (testFunction(), testVariable = 1, etc.)
+2. **ALWAYS** Use PascalCase for class names, enum names, and type definitions, i.e. (class UserService {}, enum ThemeMode {}, typedef UserCallback = void Function(User user))
+3. **ALWAYS** Use lowerCamelCase with underscore prefix for private members, i.e. (String _privateField, void _privateMethod())
+4. **ALWAYS** Use SCREAMING_CAPS for constants, i.e. (const String API_BASE_URL = 'https://api.example.com')
+5. **ALWAYS** Choose meaningful variable and function names. i.e. (Future<List<Bible>> getBibles() { return bibles; })
+6. **ALWAYS** Add descriptive comments. Make sure that the code is easily decipherable by even entry level developers.
+7. **ALWAYS** Use whitespaces effectively. Always leave blank lines to separate different parts of the functions, keeping it clean and easy to follow. 
+8. **ALWAYS** Use proper indentation. We indent our code by 2 spaces (standard Dart style).
+i.e. of rules 6, 7 and 8: 
+(
+  Future<List<Bible>> getBibles() async {
+    // Fetch bibles from the service
+    final bibles = await BibleService.getBibles();
+
+    // Return the list of bibles
+    return bibles;
+  }
+)
+9. **ALWAYS** Document our code. The documentation should ONLY be what is relevant for someone who would need to take over the project. The information should be on how to use the code, the code's purpose, architecture and design. You should also include notes about what the inputs and outputs are when the code is run and error detection and maintenance.
+10. **ALWAYS** Create reader-friendly README files. When writing them, maintain a clear structure, clearly labelling your input and outputs and the different sections of our documents. Make sure the most important information is at the top and anything critical should be labelled and stand out with all caps.
+11. **ALWAYS** Make docstrings. These should be useful for someone seeing the code for the first time and include a description of the function, parameters, return type and an example. i.e. (
+  /// Fetches a list of bibles from the API.
+  ///
+  /// Returns a [Future] that completes with a [List] of [Bible] objects.
+  /// Throws an [Exception] if the API call fails.
+  ///
+  /// Example:
+  /// ```dart
+  /// final bibles = await getBibles();
+  /// print('Found ${bibles.length} bibles');
+  /// ```
+  Future<List<Bible>> getBibles() async {
+    return await BibleService.getBibles();
+  }
+)
+12. **ALWAYS** Use Dart's built-in collection methods and operators. Prefer using `.map()`, `.where()`, `.fold()`, `.reduce()`, `.expand()`, and list/generic literals over manual loops when appropriate.
+13. **ALWAYS** Use Memory Management and optimization techniques. Efficient memory management is crucial as we want to avoid performance bottlenecks and app crashes. Use techniques like:
+    a. Disposing controllers and streams properly
+    b. Using const constructors where possible
+    c. Avoiding memory leaks with proper widget disposal
+    d. Using ListView.builder for large lists instead of ListView
+    e. Implementing proper image caching strategies
+    f. Using keys appropriately for widget identity
+14. **ALWAYS** Use Coding Best Practices for Flutter/Dart.
+15. **ALWAYS** Focus on improving Performance and keeping code scaling in mind for future iterations.
+16. **ALWAYS** Follow this process for Scaling and Performance:
+    a. Profiling Code - Use Flutter DevTools to find the slowest parts of our program so we can focus on fixing the bottleneck.
+    b. Widget Optimization - Optimize widget rebuilds using const constructors, keys, and proper state management.
+    c. Async Operations - Use isolates for CPU-intensive tasks, and ensure proper async/await usage.
+    d. Image Optimization - Compress images, use appropriate formats, and implement lazy loading.
+17. **ALWAYS** Focus on implementing the right strategies to avoid performance degradation, especially for future scaling:
+    a. List Virtualization - Use ListView.builder, GridView.builder, and CustomScrollView for large datasets.
+    b. State Management - Choose appropriate state management solution (Provider, Riverpod, Bloc) and avoid unnecessary rebuilds.
+    c. Code Splitting - Use deferred imports for large features that aren't immediately needed.
+    d. Lazy Loading - Load data on-demand rather than all at once.
+    e. Caching Strategies - Implement proper caching for API responses and computed values.
+18. **ALWAYS** Balance Optimization with Code Readability.
+19. **ALWAYS** Use const constructors whenever possible to reduce widget rebuilds and improve performance.
+20. **ALWAYS** Use keys appropriately for widgets that need to maintain state across rebuilds or in lists.
+
+Version Control
+
+21. **ALWAYS** Utilize version control. Always backup our code into Git. This includes creating a 'feature/' branch for development and 'release/' branch for cloud deployment development.
+22. **ALWAYS** Create a backup in git before any big feature implementation.
+23. **ALWAYS** Use these core themes for git:
+    a. Branching.
+    b. Pull Requests.
+    c. Merging.
+    d. Pushes.
+24. **ALWAYS** Handle conflicts and maintain clean commit history.
+25. **ALWAYS** Write descriptive commit messages following conventional commits format when possible.
+
+Error Handling and Testing
+
+26. **ALWAYS** Follow Test-Driven Development (TDD). Placing testing at the forefront of all work we should do.
+27. **ALWAYS** Write unit tests to validate code functionality after each successful major functionality is created. i.e. (
+  import 'package:flutter_test/flutter_test.dart';
+  import 'package:bible_study_finder_frontend/services/bible_service.dart';
+
+  void main() {
+    group('BibleService', () {
+      test('getBibles returns a list of bibles', () async {
+        // Arrange
+        final service = BibleService();
+
+        // Act
+        final result = await service.getBibles();
+
+        // Assert
+        expect(result, isA<List<Bible>>());
+        expect(result.length, greaterThan(0));
+      });
+    });
+  }
+)
+28. **ALWAYS** Write widget tests for reusable widgets. i.e. (
+  import 'package:flutter_test/flutter_test.dart';
+  import 'package:bible_study_finder_frontend/widgets/bible_card.dart';
+  import 'package:bible_study_finder_frontend/models/bible/bible.dart';
+
+  void main() {
+    testWidgets('BibleCard displays bible name', (WidgetTester tester) async {
+      // Arrange
+      final bible = Bible(id: '1', name: 'Test Bible', abbreviation: 'TB');
+
+      // Act
+      await tester.pumpWidget(BibleCard(bible: bible));
+
+      // Assert
+      expect(find.text('Test Bible'), findsOneWidget);
+    });
+  }
+)
+29. **ALWAYS** Use try-catch blocks for robust code execution. i.e. (
+  Future<List<Bible>> getBibles() async {
+    try {
+      final bibles = await BibleService.getBibles();
+      return bibles;
+    } catch (e, stackTrace) {
+      logger.error('Error fetching bibles: $e', error: e, stackTrace: stackTrace);
+      return [];
+    }
+  }
+)
+30. **ALWAYS** Handle async errors properly using try-catch with stack traces.
+31. **ALWAYS** Use Future.error() or throw for propagating errors when appropriate.
+32. **ALWAYS** Provide user-friendly error messages in the UI while logging detailed errors.
+
+Security and Privacy Considerations
+
+33. **ALWAYS** Safeguard sensitive data. We want to avoid sensitive data being visible, easily retrievable and never committed to git. The following are how we can improve security:
+    a. Data Minimization - Only store necessary data locally.
+    b. Access Control - Implement proper authentication and authorization checks.
+    c. Data Encryption - Use secure storage for sensitive data (flutter_secure_storage).
+    d. Secure Communication - Always use HTTPS for API calls.
+34. **ALWAYS** Validate and sanitize user inputs to prevent security vulnerabilities such as:
+    a. XSS (Cross-Site Scripting) - Sanitize text inputs before displaying.
+    b. Injection Attacks - Validate and sanitize all user inputs before sending to backend.
+    c. Path Traversal - Validate file paths and URLs.
+35. **ALWAYS** Secure Libraries and Components. When using third-party libraries or components, verify their security posture and keep them updated to patch vulnerabilities. 
+36. **NEVER** Use vulnerable Libraries and Components.
+37. **ALWAYS** Focus on Regular Security Testing. 
+38. **ALWAYS** Use Secure Authentication and Authorization when validating privileges, such as:
+    a. Token-based authentication with secure storage.
+    b. Token refresh mechanisms.
+    c. Proper session management.
+    d. Robust Authorization Control to ensure users only have access to the resources they need.
+39. **NEVER** Hardcode credentials or sensitive information in the code or configuration files.
+40. **ALWAYS** Use environment variables or secure configuration files for API keys and secrets.
+41. **ALWAYS** Implement proper certificate pinning for production API calls when necessary.
+
+Flutter-Specific Best Practices
+
+42. **ALWAYS** Use StatelessWidget when the widget doesn't need to maintain state.
+43. **ALWAYS** Dispose of controllers, streams, and subscriptions in the dispose() method of StatefulWidget.
+44. **ALWAYS** Use const constructors for widgets that don't depend on runtime values.
+45. **ALWAYS** Implement proper widget lifecycle management (initState, dispose, etc.).
+46. **ALWAYS** Use keys appropriately:
+    a. Use ValueKey for widgets with unique values.
+    b. Use ObjectKey for widgets with unique objects.
+    c. Use GlobalKey sparingly and only when necessary.
+47. **ALWAYS** Optimize widget rebuilds:
+    a. Extract widgets into separate StatelessWidget when they rebuild unnecessarily.
+    b. Use const constructors where possible.
+    c. Implement proper state management to avoid unnecessary rebuilds.
+48. **ALWAYS** Use appropriate widgets for the task:
+    a. Use ListView.builder for long lists.
+    b. Use FutureBuilder for async data.
+    c. Use StreamBuilder for reactive data.
+    d. Use AnimatedWidget for animations.
+49. **ALWAYS** Follow Material Design guidelines or Cupertino design guidelines consistently.
+50. **ALWAYS** Implement responsive design for different screen sizes.
+51. **ALWAYS** Handle platform-specific code appropriately using Platform.isAndroid, Platform.isIOS, etc.
+52. **ALWAYS** Use proper navigation patterns (Navigator, GoRouter, etc.) and avoid deep nesting.
+
+Coding Rules
+
+53. **NEVER** Have any method or function be more than 15 lines of code. If the code is more than 15 lines of code, separate the functions into smaller functions.
+54. **ALWAYS** Use proper use of Public, Private, and Static methods:
+    a. Public methods: No underscore prefix, accessible from outside the class.
+    b. Private methods: Underscore prefix (_methodName), only accessible within the class.
+    c. Static methods: Use when the method doesn't depend on instance state.
+55. **ALWAYS** Have Functions and Methods do EXACTLY what they say they do. i.e. (
+  // This method should ONLY fetch bibles and return the result, if anything else needs to be done, it should be done in a separate 'helper' function.
+  Future<List<Bible>> getBibles() async {
+    return await _fetchBiblesFromApi();
+  }
+)
+56. **ALWAYS** Use async/await instead of .then() chains for better readability.
+57. **ALWAYS** Use proper type annotations. Avoid using dynamic unless absolutely necessary.
+58. **ALWAYS** Use null safety features properly:
+    a. Use nullable types (String?) when values can be null.
+    b. Use null-aware operators (?., ??, ??=) appropriately.
+    c. Use late keyword only when you're certain the variable will be initialized before use.
+59. **ALWAYS** Use final for variables that won't be reassigned, and const for compile-time constants.
+60. **ALWAYS** Extract widget build methods into smaller, focused methods when they exceed 15 lines.
+61. **ALWAYS** Use named parameters for functions with more than 2 parameters to improve readability.
+62. **ALWAYS** Use optional parameters with default values when appropriate.
+63. **ALWAYS** Implement proper error boundaries and error handling in widgets.
+64. **ALWAYS** Use proper imports:
+    a. Use relative imports for files in the same package.
+    b. Use package imports for files in different packages.
+    c. Group imports: dart imports, package imports, then relative imports.
+65. **ALWAYS** Follow the single responsibility principle - each class, function, and widget should have one clear purpose.
+
+State Management
+
+66. **ALWAYS** Choose the appropriate state management solution based on complexity:
+    a. Use setState for local widget state.
+    b. Use Provider/Riverpod for app-wide state.
+    c. Use Bloc for complex state management with business logic.
+67. **ALWAYS** Keep state as close to where it's used as possible.
+68. **ALWAYS** Avoid global state unless absolutely necessary.
+69. **ALWAYS** Dispose of state management subscriptions properly.
+70. **ALWAYS** Use immutable state objects when possible.
+
+API and Network
+
+71. **ALWAYS** Use the API layer (lib/apis/) for all HTTP requests - never make direct HTTP calls from pages or services.
+72. **ALWAYS** Implement proper error handling for network requests.
+73. **ALWAYS** Use proper HTTP status code handling.
+74. **ALWAYS** Implement request timeouts to prevent hanging requests.
+75. **ALWAYS** Use proper headers including authentication tokens.
+76. **ALWAYS** Log API requests and responses appropriately (using the logger).
+77. **ALWAYS** Handle network connectivity issues gracefully.
+78. **ALWAYS** Implement retry logic for failed requests when appropriate.
+79. **ALWAYS** Use proper serialization/deserialization for JSON data.
+80. **ALWAYS** Validate API responses before using the data.
+
+UI/UX Best Practices
+
+81. **ALWAYS** Provide loading states for async operations.
+82. **ALWAYS** Provide error states with user-friendly messages.
+83. **ALWAYS** Implement proper empty states for lists and data.
+84. **ALWAYS** Use appropriate loading indicators (CircularProgressIndicator, LinearProgressIndicator, etc.).
+85. **ALWAYS** Implement pull-to-refresh where appropriate.
+86. **ALWAYS** Provide feedback for user actions (SnackBar, Toast, etc.).
+87. **ALWAYS** Use proper accessibility features:
+    a. Use Semantics widgets for screen readers.
+    b. Provide proper text scaling support.
+    c. Ensure proper color contrast.
+    d. Use proper touch target sizes (minimum 48x48 pixels).
+88. **ALWAYS** Implement proper keyboard handling and form validation.
+89. **ALWAYS** Use proper animations and transitions for better UX.
+90. **ALWAYS** Test on multiple device sizes and orientations.
+
+Code Organization
+
+91. **ALWAYS** Follow the established architecture pattern (Pages → Services → APIs → Backend).
+92. **ALWAYS** Organize files by domain (bible, church, group, etc.).
+93. **ALWAYS** Keep related files together in domain-specific folders.
+94. **ALWAYS** Use barrel exports (export files) sparingly and only when it improves readability.
+95. **ALWAYS** Keep widget files focused and single-purpose.
+96. **ALWAYS** Extract reusable widgets into the widgets/ folder.
+97. **ALWAYS** Place constants in the constants/ folder.
+98. **ALWAYS** Place core functionality in the core/ folder.
+99. **ALWAYS** Use meaningful file and folder names that reflect their purpose.
+100. **ALWAYS** Keep the lib/ folder structure clean and organized.
+
+Documentation and Comments
+
+101. **ALWAYS** Document public APIs and complex logic.
+102. **ALWAYS** Use /// for documentation comments (doc comments).
+103. **ALWAYS** Use // for regular comments explaining why, not what.
+104. **ALWAYS** Keep comments up-to-date with code changes.
+105. **ALWAYS** Remove commented-out code before committing.
+106. **ALWAYS** Document complex algorithms and business logic.
+107. **ALWAYS** Include examples in documentation when helpful.
+
+Performance Optimization
+
+108. **ALWAYS** Profile code before optimizing - measure first, optimize second.
+109. **ALWAYS** Use const constructors to reduce widget rebuilds.
+110. **ALWAYS** Use ListView.builder for long lists to enable lazy loading.
+111. **ALWAYS** Implement proper image caching and optimization.
+112. **ALWAYS** Avoid unnecessary setState calls.
+113. **ALWAYS** Use RepaintBoundary for expensive widgets.
+114. **ALWAYS** Implement proper debouncing and throttling for user input.
+115. **ALWAYS** Use isolates for CPU-intensive tasks.
+116. **ALWAYS** Minimize widget tree depth when possible.
+117. **ALWAYS** Use proper asset optimization (compress images, use appropriate formats).
+
+Logging
+
+118. **ALWAYS** Use the custom logger from lib/core/logging/logger.dart for all logging.
+119. **ALWAYS** Log at appropriate levels (debug, info, warning, error, critical).
+120. **ALWAYS** Never log sensitive information (passwords, tokens, etc.).
+121. **ALWAYS** Include context in log messages (function names, parameters, etc.).
+122. **ALWAYS** Log errors with stack traces using the logger's error method.
+123. **ALWAYS** Use structured logging for API calls and important operations.
