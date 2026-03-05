@@ -29,7 +29,6 @@ export const projects: Project[] = [
     status: 'in development',
     workedOn: 'Feb/26/26 - Current',
     tags: ['Node.js', 'PostgreSQL', 'Python', 'FastAPI', 'CI/CD', 'React', 'TypeScript', 'marvelrivalsapi'],
-    link: 'https://marvel-rivals-stats.netlify.app/',
     image: '/projects/marvel-rivals.jpg',
   },
   {
@@ -57,6 +56,7 @@ export const projects: Project[] = [
     status: 'in development',
     workedOn: 'Feb/27/26 - Current',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'React Router', 'Framer Motion'],
+    link: 'https://trevorportfolio.netlify.app/',
     image: '/projects/portfolio-website.jpg',
   },
 ]

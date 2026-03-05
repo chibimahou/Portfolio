@@ -46,6 +46,7 @@ function SectionHeading({
 function AboutPage() {
   return (
     <motion.article
+      id="top"
       initial="hidden"
       animate="show"
       variants={{ show: { transition: { staggerChildren: 0.08 } } }}
@@ -66,7 +67,7 @@ function AboutPage() {
           <a
             key={id}
             href={`#${id}`}
-            className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500 rounded px-2 py-1"
+            className="inline-flex items-center px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500 transition-colors"
           >
             {sectionLabels[id]}
           </a>
@@ -136,6 +137,15 @@ function AboutPage() {
           ))}
         </ul>
       </motion.section>
+
+      <motion.div variants={sectionVariants} className="mt-12 text-center">
+        <a
+          href="#top"
+          className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500 rounded transition-colors"
+        >
+          ↑ Back to top
+        </a>
+      </motion.div>
     </motion.article>
   )
 }
@@ -153,6 +163,18 @@ function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
         <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
           {entry.description}
         </p>
+      )}
+      {entry.accomplishments && entry.accomplishments.length > 0 && (
+        <ul className="mt-3 space-y-1.5 pl-4 border-l-2 border-gray-200 dark:border-gray-700">
+          {entry.accomplishments.map((item, i) => (
+            <li
+              key={i}
+              className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
       )}
     </li>
   )

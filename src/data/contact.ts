@@ -10,10 +10,10 @@ export type ContactInfo = {
 }
 
 export const contactInfo: ContactInfo = {
-  email: 'your.email@example.com',
-  phone: '+1 (555) 000-0000',
+  email: 'jacksontrevor297@gmail.com',
   socials: [
-    { label: 'LinkedIn', url: 'https://linkedin.com/in/yourprofile' },
-    { label: 'GitHub', url: 'https://github.com/yourusername' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/trevor-jackson-prof/' },
+    { label: 'GitHub 1', url: 'https://github.com/chibimahou' },
+    { label: 'GitHub 2', url: 'https://github.com/AIHeart-Professional' },
   ],
 }

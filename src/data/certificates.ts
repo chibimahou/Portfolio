@@ -9,15 +9,8 @@ export type CertificateEntry = {
 export const certificates: CertificateEntry[] = [
   {
     id: '1',
-    name: 'AWS Certified Developer – Associate',
-    issuer: 'Amazon Web Services',
-    date: '2024',
-    url: 'https://example.com/verify',
-  },
-  {
-    id: '2',
-    name: 'Example Professional Certification',
-    issuer: 'Issuer Name',
-    date: '2023',
-  },
+    name: 'Google Gen AI Leadership Certification',
+    issuer: 'Google Cloud',
+    date: '2025 - 2027',
+  }
 ]
