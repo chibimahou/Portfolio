@@ -1,29 +1,15 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useLocation, useRoutes } from 'react-router-dom'
+import { useLocation, Outlet } from 'react-router-dom'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
-import { HomePage } from './pages/HomePage'
-import { AboutPage } from './pages/AboutPage'
-import { ProjectsPage } from './pages/ProjectsPage'
-import { DownloadPage } from './pages/DownloadPage'
-import { ContactPage } from './pages/ContactPage'
 
-const routes = [
-  { path: '/', element: <HomePage /> },
-  { path: '/about', element: <AboutPage /> },
-  { path: '/projects', element: <ProjectsPage /> },
-  { path: '/download', element: <DownloadPage /> },
-  { path: '/contact', element: <ContactPage /> },
-]
-
-export function AppRoutes() {
+export function PortfolioLayout() {
   const location = useLocation()
-  const element = useRoutes(routes)
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <Header />
-      <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-8 min-h-[calc(100vh-8rem)] flex flex-col">
+      <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8 min-h-[calc(100vh-8rem)] flex flex-col">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
@@ -33,11 +19,11 @@ export function AppRoutes() {
             transition={{ duration: 0.2 }}
             className="flex-1"
           >
-            {element}
+            <Outlet />
           </motion.div>
         </AnimatePresence>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }

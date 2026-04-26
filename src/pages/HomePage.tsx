@@ -98,19 +98,19 @@ function HeroSection() {
         <div className="min-w-0 flex-1">
           <motion.h1
             variants={heroItem}
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight"
+            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight text-center md:text-left"
           >
             Trevor Jackson
           </motion.h1>
           <motion.p
             variants={heroItem}
-            className="mt-3 text-lg md:text-xl font-medium text-gray-600 dark:text-gray-300"
+            className="mt-3 text-lg md:text-xl font-medium text-gray-600 dark:text-gray-300 text-center md:text-left"
           >
             Full-Stack Developer | 8+ Years | AI-Enthusiast
           </motion.p>
           <motion.p
             variants={heroItem}
-            className="mt-5 text-base text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed"
+            className="mt-5 text-base text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed text-center md:text-left"
           >
             I build scalable full stack web and desktop applications, from backend APIs and cloud
             infrastructure to polished frontends, with a focus on AI/ML integration, security, and

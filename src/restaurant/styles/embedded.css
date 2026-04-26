@@ -1,0 +1,1282 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Prata&display=swap");
+
+/* ===== DESIGN TOKENS ===== */
+.restaurant-app {
+  --bg: #f8f5ef;
+  --bg-alt: #f0e8d9;
+  --surface: #fffaf3;
+  --text: #2a231f;
+  --muted: #6d625c;
+  --line: #dccfb8;
+  --primary: #a13b2f;
+  --primary-strong: #832f25;
+  --secondary: #134e4a;
+  --focus: #d17e4a;
+  --radius: 14px;
+  --shadow: 0 10px 24px rgba(33, 23, 14, 0.1);
+  --container: min(1120px, 92vw);
+  --header-h: 74px;
+  --section-flow-space: clamp(0.9rem, 2.5vw, 1.25rem);
+}
+
+html[data-theme="dark"] .restaurant-app {
+  --bg: #111417;
+  --bg-alt: #172026;
+  --surface: #1f2a32;
+  --text: #ecf2f2;
+  --muted: #b5c4c8;
+  --line: #36505c;
+  --primary: #eb7a5d;
+  --primary-strong: #d2664a;
+  --secondary: #7bd3ca;
+  --focus: #ffd58f;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== ELEMENT RESETS (scoped) ===== */
+.restaurant-app {
+  font-family: "Outfit", sans-serif;
+  background: radial-gradient(circle at top, var(--bg-alt) 0%, var(--bg) 45%);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding-bottom: 70px;
+}
+
+.restaurant-app h1,
+.restaurant-app h2,
+.restaurant-app h3,
+.restaurant-app h4 {
+  font-family: "Prata", serif;
+  line-height: 1.2;
+  margin: 0 0 0.6rem;
+}
+
+.restaurant-app p {
+  margin: 0 0 0.8rem;
+  color: var(--muted);
+}
+
+.restaurant-app a {
+  color: inherit;
+}
+
+.restaurant-app img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.restaurant-app button,
+.restaurant-app input,
+.restaurant-app select,
+.restaurant-app textarea {
+  font: inherit;
+  color: inherit;
+}
+
+.restaurant-app button,
+.restaurant-app a,
+.restaurant-app input,
+.restaurant-app select,
+.restaurant-app textarea {
+  min-height: 44px;
+}
+
+.restaurant-app :focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.restaurant-app .skip-link {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  background: var(--primary);
+  color: white;
+  padding: 0.6rem 0.8rem;
+}
+
+.restaurant-app .skip-link:focus-visible {
+  left: 0.6rem;
+  top: 0.6rem;
+}
+
+/* ===== LAYOUT ===== */
+.restaurant-app .container {
+  width: var(--container);
+  margin: 0 auto;
+}
+
+.restaurant-app .flow-stack > * + * {
+  margin-top: var(--section-flow-space, 1rem);
+}
+
+.restaurant-app .section {
+  padding: clamp(2.4rem, 6vw, 5rem) 0;
+}
+
+.restaurant-app .alt-bg {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--bg-alt) 86%, transparent) 0%, transparent 100%);
+}
+
+.restaurant-app .section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.4rem;
+}
+
+.restaurant-app .card-shell {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+.restaurant-app .row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.restaurant-app .row-inline {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* ===== BUTTONS ===== */
+.restaurant-app .btn {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.58rem 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.restaurant-app .btn:active {
+  transform: scale(0.98);
+}
+
+.restaurant-app .btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.restaurant-app .btn-primary:hover {
+  background: var(--primary-strong);
+}
+
+.restaurant-app .btn-secondary {
+  background: var(--secondary);
+  color: white;
+}
+
+.restaurant-app .btn-ghost {
+  border-color: var(--line);
+  background: transparent;
+}
+
+.restaurant-app .icon-btn {
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.restaurant-app .menu-glyph {
+  display: block;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.restaurant-app .tag,
+.restaurant-app .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 0.22rem 0.6rem;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.restaurant-app .chip-active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.restaurant-app .chip-row,
+.restaurant-app .tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.restaurant-app .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.restaurant-app .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.restaurant-app .card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* ===== HEADER ===== */
+.restaurant-app .site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+}
+
+.restaurant-app .header-row {
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.restaurant-app .brand-mark {
+  font-family: "Prata", serif;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.restaurant-app .desktop-nav {
+  display: none;
+  gap: 0.8rem;
+}
+
+.restaurant-app .desktop-nav a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.2rem;
+  border-bottom: 2px solid transparent;
+}
+
+.restaurant-app .desktop-nav a.is-active {
+  border-color: var(--primary);
+}
+
+.restaurant-app .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.restaurant-app .badge-dot {
+  position: absolute;
+  transform: translate(10px, -12px);
+  min-width: 1.1rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: white;
+  font-size: 0.72rem;
+}
+
+/* ===== MOBILE DRAWER ===== */
+.restaurant-app .mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: rgba(14, 12, 10, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+  z-index: 90;
+}
+
+.restaurant-app .mobile-drawer-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.restaurant-app .mobile-drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(320px, 88vw);
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--surface);
+  transform: translateX(100%);
+  transition: transform 260ms ease;
+  border-left: 1px solid var(--line);
+  padding: 1rem;
+  z-index: 100;
+}
+
+.restaurant-app .mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+.restaurant-app .drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.restaurant-app .drawer-links {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.restaurant-app .drawer-links a {
+  text-decoration: none;
+}
+
+.restaurant-app .drawer-cta {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.restaurant-app .mobile-only {
+  display: inline-flex;
+}
+
+.restaurant-app .desktop-only {
+  display: none;
+}
+
+/* ===== HERO ===== */
+.restaurant-app .hero {
+  position: relative;
+  min-height: min(92vh, 760px);
+  display: flex;
+  align-items: end;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.restaurant-app .hero-bg,
+.restaurant-app .hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.restaurant-app .hero-bg {
+  object-fit: cover;
+}
+
+.restaurant-app .hero-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.18));
+}
+
+.restaurant-app .hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding-bottom: clamp(2rem, 7vh, 4rem);
+}
+
+.restaurant-app .hero-content p {
+  color: color-mix(in srgb, white 80%, transparent);
+}
+
+.restaurant-app .hero-intro-card {
+  width: min(680px, 100%);
+  padding: clamp(0.85rem, 2.8vw, 1.25rem);
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
+  background: color-mix(in srgb, var(--surface) 94%, var(--bg-alt));
+  box-shadow: 0 12px 28px rgba(18, 14, 10, 0.18);
+}
+
+.restaurant-app .hero-intro-card,
+.restaurant-app .hero-intro-card h1 {
+  color: var(--text);
+}
+
+.restaurant-app .hero-intro-card p {
+  color: var(--muted);
+}
+
+.restaurant-app .hero-intro-card .eyebrow {
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.restaurant-app .hero h1 {
+  font-size: clamp(2rem, 9vw, 4rem);
+}
+
+.restaurant-app .hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* ===== QUICK STRIP ===== */
+.restaurant-app .quick-strip {
+  border-bottom: 1px solid var(--line);
+  padding: 0.9rem 0 1.1rem;
+}
+
+.restaurant-app .quick-strip-inner {
+  display: flex;
+  justify-content: center;
+}
+
+.restaurant-app .quick-strip-card {
+  width: min(760px, 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 90%, var(--bg));
+  box-shadow: var(--shadow);
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+
+.restaurant-app .quick-strip-item { margin: 0; }
+.restaurant-app .quick-strip-line { line-height: 1.4; }
+.restaurant-app .quick-strip-hours-line { font-weight: 500; }
+.restaurant-app .quick-strip-day { color: var(--primary); font-weight: 700; letter-spacing: 0.01em; }
+.restaurant-app .quick-strip-time { color: var(--text); font-weight: 500; }
+.restaurant-app .quick-strip-separator { color: var(--muted); }
+.restaurant-app .quick-strip-line + .quick-strip-line { margin-top: 0.35rem; }
+
+/* ===== CARDS ===== */
+.restaurant-app .card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.restaurant-app .dish-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition: transform 200ms ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.restaurant-app .dish-card:hover { transform: translateY(-3px); }
+
+.restaurant-app .dish-card-img,
+.restaurant-app .story-image,
+.restaurant-app .dialog-image,
+.restaurant-app .order-img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.restaurant-app .dish-card-body {
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.restaurant-app .dish-card-body > p {
+  margin: 0;
+}
+
+.restaurant-app .dish-card-body .row-between {
+  width: 100%;
+  align-items: flex-start;
+}
+
+.restaurant-app .dish-card-body .tag-row {
+  margin: auto 0 0;
+}
+
+.restaurant-app .dish-card-body .btn {
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+.restaurant-app .sold-out-pill {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.78rem;
+}
+
+.restaurant-app .dish-image-wrap { position: relative; }
+
+.restaurant-app .review-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.restaurant-app .review-card {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* ===== MAP / SPLIT ===== */
+.restaurant-app .map-band .map-placeholder,
+.restaurant-app .map-placeholder {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 86%, var(--bg));
+  min-height: 220px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.restaurant-app .split {
+  display: grid;
+  gap: 1rem;
+}
+
+.restaurant-app .stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.restaurant-app .cta-band {
+  background: linear-gradient(120deg, var(--secondary), color-mix(in srgb, var(--secondary) 70%, black));
+  color: white;
+  padding: 1.7rem 0;
+}
+
+.restaurant-app .cta-band-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ===== FORMS ===== */
+.restaurant-app .menu-controls input,
+.restaurant-app label + input,
+.restaurant-app label + select,
+.restaurant-app label + textarea,
+.restaurant-app .order-inputs input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  background: var(--surface);
+}
+
+.restaurant-app .menu-controls {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.restaurant-app .tabs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.restaurant-app .tabs button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 0.42rem 0.8rem;
+}
+
+.restaurant-app .tabs button.is-active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ===== SKELETON ===== */
+.restaurant-app .skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.restaurant-app .skeleton-card {
+  height: 270px;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--bg-alt) 20%, var(--surface) 50%, var(--bg-alt) 80%);
+  background-size: 300% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -100% 0; }
+}
+
+.restaurant-app .empty-state {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+}
+
+/* ===== STEPPER / RESERVATION / ORDER ===== */
+.restaurant-app .stepper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+  margin: 0 0 1rem;
+}
+
+.restaurant-app .stepper li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-align: center;
+  padding: 0.35rem;
+}
+
+.restaurant-app .stepper li.is-active {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.restaurant-app .reservation-grid,
+.restaurant-app .events-grid,
+.restaurant-app .order-grid,
+.restaurant-app .values-grid,
+.restaurant-app .gallery-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.restaurant-app .order-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.restaurant-app .order-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.restaurant-app .order-card > div {
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.restaurant-app .order-inputs {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.restaurant-app .order-card > div > * + * {
+  margin-top: 0;
+}
+
+.restaurant-app .order-card > div > p {
+  margin: 0;
+}
+
+.restaurant-app .order-card .row-between {
+  width: 100%;
+  margin-top: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.restaurant-app .order-card .btn {
+  align-self: flex-start;
+}
+
+.restaurant-app .mini-cart {
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+}
+
+/* ===== DIALOG / CART ===== */
+.restaurant-app .overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 12, 10, 0.65);
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.restaurant-app .dialog {
+  width: min(640px, 96vw);
+  max-height: 90vh;
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.restaurant-app .dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.restaurant-app .dialog-content {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.restaurant-app .dialog-content > p {
+  margin: 0;
+}
+
+.restaurant-app .dialog-meta {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
+}
+
+.restaurant-app .dialog-price {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.restaurant-app .dialog-allergens {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.restaurant-app .dialog-content fieldset {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin: 0;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.restaurant-app .dialog-content legend {
+  padding: 0 0.35rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.restaurant-app .option-required {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.55rem;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.restaurant-app .option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.restaurant-app .option-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  min-height: 36px;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease, color 160ms ease;
+}
+
+.restaurant-app .option-pill:hover {
+  border-color: color-mix(in srgb, var(--primary) 55%, var(--line));
+  transform: translateY(-1px);
+}
+
+.restaurant-app .option-pill.is-selected {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+}
+
+.restaurant-app .option-pill:focus-within {
+  outline: 2px solid color-mix(in srgb, var(--primary) 45%, transparent);
+  outline-offset: 2px;
+}
+
+.restaurant-app .option-control {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.restaurant-app .dialog-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: end;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  padding-top: 0.35rem;
+}
+
+.restaurant-app .quantity-control {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.restaurant-app .quantity-control label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.restaurant-app .quantity-input {
+  width: 64px;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.4rem 0.55rem;
+  background: var(--surface);
+}
+
+.restaurant-app .cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(420px, 100vw);
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  transform: translateX(100%);
+  transition: transform 260ms ease;
+  z-index: 90;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.restaurant-app .cart-drawer.is-open { transform: translateX(0); }
+
+.restaurant-app .cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.restaurant-app .cart-list li {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.65rem;
+}
+
+.restaurant-app .qty-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.restaurant-app .qty-row button {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 0.25rem 0.5rem;
+  min-height: 36px;
+}
+
+.restaurant-app .summary-box {
+  margin: 0.8rem 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
+}
+
+.restaurant-app .success-panel {
+  border: 1px solid color-mix(in srgb, var(--secondary) 40%, var(--line));
+  border-radius: var(--radius);
+  padding: 1rem;
+  background: color-mix(in srgb, var(--secondary) 14%, var(--surface));
+}
+
+.restaurant-app .featured { border-color: var(--primary); }
+
+.restaurant-app .events-grid,
+.restaurant-app .values-grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 1rem;
+}
+
+.restaurant-app .gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.restaurant-app .gallery-tile {
+  display: grid;
+  gap: 0.5rem;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.restaurant-app .gallery-tile span {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.restaurant-app .gallery-image {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+.restaurant-app .lightbox-image {
+  max-height: 72vh;
+  object-fit: contain;
+}
+
+/* ===== HOURS / FAQ / NEWSLETTER ===== */
+.restaurant-app .hours-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.restaurant-app .hours-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.restaurant-app .today-row {
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 8px;
+  padding-inline: 0.5rem;
+}
+
+.restaurant-app .faq-item + .faq-item { margin-top: 0.45rem; }
+
+.restaurant-app .faq-question {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 0.55rem;
+}
+
+.restaurant-app .newsletter {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+}
+
+.restaurant-app .newsletter label { grid-column: 1 / -1; }
+
+/* ===== TOAST ===== */
+.restaurant-app .toast {
+  position: fixed;
+  right: 0.8rem;
+  bottom: 84px;
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  animation: toast-in 240ms ease;
+}
+
+@keyframes toast-in {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== FOOTER ===== */
+.restaurant-app .site-footer {
+  border-top: 1px solid var(--line);
+  padding: 1.4rem 0 6rem;
+}
+
+.restaurant-app .footer-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.restaurant-app .social-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.restaurant-app .demo-mark { font-size: 0.86rem; opacity: 0.72; }
+
+/* ===== BOTTOM ACTION BAR ===== */
+.restaurant-app .bottom-actions {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 86%, var(--bg));
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.restaurant-app .bottom-actions a,
+.restaurant-app .bottom-actions button {
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.52rem 0.2rem;
+  color: inherit;
+}
+
+.restaurant-app .bottom-actions :last-child { border-right: 0; }
+
+.restaurant-app .bottom-cart-btn { position: relative; }
+
+.restaurant-app .bottom-cart-badge {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.35rem;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 999px;
+  background: #d12c2c;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.1rem;
+  padding: 0 0.2rem;
+}
+
+/* ===== PAYMENT ===== */
+.restaurant-app .mt-24 { margin-top: 1.5rem; }
+
+.restaurant-app .payment-options {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.restaurant-app .payment-option {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+  text-align: left;
+  width: 100%;
+  min-height: 44px;
+  font-size: 0.95rem;
+}
+
+.restaurant-app .payment-option:hover {
+  border-color: color-mix(in srgb, var(--primary) 55%, var(--line));
+}
+
+.restaurant-app .payment-option.is-selected {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+}
+
+.restaurant-app .payment-option-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.restaurant-app .payment-option-label { flex: 1; font-weight: 500; }
+.restaurant-app .payment-option-check { color: var(--primary); font-weight: 700; }
+
+.restaurant-app .google-g {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4285F4 25%, #EA4335 25% 50%, #FBBC04 50% 75%, #34A853 75%);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.restaurant-app .card-fields {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface) 60%, var(--bg));
+}
+
+.restaurant-app .card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.restaurant-app .payment-section-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 0.6rem 0 0.25rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 420px) {
+  .restaurant-app .brand-mark {
+    font-size: 1rem;
+    max-width: 44vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .restaurant-app .header-actions { gap: 0.3rem; }
+  .restaurant-app .icon-btn { width: 40px; height: 40px; }
+  .restaurant-app .mobile-drawer { width: 100vw; }
+  .restaurant-app .bottom-actions a,
+  .restaurant-app .bottom-actions button { font-size: 0.86rem; padding: 0.48rem 0.1rem; }
+  .restaurant-app .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .restaurant-app .quick-strip-card { padding: 0.75rem 0.7rem; }
+  .restaurant-app .hero-intro-card { padding: 0.75rem; }
+  .restaurant-app .quick-strip-line { font-size: 0.92rem; overflow-wrap: anywhere; }
+  .restaurant-app .gallery-image { aspect-ratio: 1 / 1; }
+  .restaurant-app .section-head { margin-bottom: 1rem; }
+  .restaurant-app .dialog-footer {
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+
+  .restaurant-app .quantity-control {
+    width: 100%;
+  }
+
+  .restaurant-app .quantity-input {
+    width: 100%;
+  }
+
+  .restaurant-app .dialog-footer .btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 760px) {
+  .restaurant-app { padding-bottom: 0; }
+  .restaurant-app .desktop-nav,
+  .restaurant-app .desktop-only { display: inline-flex; }
+  .restaurant-app .mobile-only,
+  .restaurant-app .bottom-actions { display: none; }
+  .restaurant-app .split { grid-template-columns: 1.2fr 1fr; }
+  .restaurant-app .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

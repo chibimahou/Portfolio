@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import type { Project, ProjectStatus } from '../../data/projects'
 
 export const STATUS_STYLES: Record<ProjectStatus, string> = {
@@ -40,7 +41,7 @@ export function getFallbackImageUrl(title: string): string {
 }
 
 const CARD_CLASS =
-  'rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 overflow-hidden text-left shadow-sm hover:shadow-md transition-shadow focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-gray-500 block'
+  'rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 overflow-hidden text-left shadow-sm hover:shadow-md transition-shadow focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-gray-500 block h-full flex flex-col'
 
 export function ProjectCard({
   project,
@@ -67,7 +68,7 @@ export function ProjectCard({
           }}
         />
       </div>
-      <div className="p-5 text-left">
+      <div className="p-5 text-left flex-1 flex flex-col">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white text-center">
           {project.title}
         </h3>
@@ -77,23 +78,25 @@ export function ProjectCard({
         <p className="mt-1.5 text-xs text-gray-500 dark:text-gray-400">
           {project.workedOn}
         </p>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 min-h-[72px]">
           {project.description}
         </p>
-        {project.tags && project.tags.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs font-medium text-gray-700 dark:text-gray-300"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-        {project.link && (
-          <span className="mt-2 inline-block text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+        <div className="mt-3 min-h-[52px]">
+          {project.tags && project.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center rounded-md bg-gray-100 dark:bg-gray-800 px-2 py-0.5 text-xs font-medium text-gray-700 dark:text-gray-300"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        {(project.link || project.internalLink) && (
+          <span className="mt-auto pt-2 inline-block text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
             View project →
           </span>
         )}
@@ -103,13 +106,22 @@ export function ProjectCard({
 
   return (
     <motion.article
+      className="h-full"
       custom={index}
       variants={cardVariants}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: '-40px' }}
     >
-      {project.link ? (
+      {project.internalLink?.startsWith('/projects/restaurant-template') ? (
+        <a href={project.internalLink} className={CARD_CLASS}>
+          {content}
+        </a>
+      ) : project.internalLink ? (
+        <Link to={project.internalLink} className={CARD_CLASS}>
+          {content}
+        </Link>
+      ) : project.link ? (
         <a
           href={project.link}
           target="_blank"

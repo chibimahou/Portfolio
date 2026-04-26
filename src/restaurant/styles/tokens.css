@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Prata&display=swap");
+
+:root {
+  --bg: #f8f5ef;
+  --bg-alt: #f0e8d9;
+  --surface: #fffaf3;
+  --text: #2a231f;
+  --muted: #6d625c;
+  --line: #dccfb8;
+  --primary: #a13b2f;
+  --primary-strong: #832f25;
+  --secondary: #134e4a;
+  --focus: #d17e4a;
+  --radius: 14px;
+  --shadow: 0 10px 24px rgba(33, 23, 14, 0.1);
+  --container: min(1120px, 92vw);
+  --header-h: 74px;
+  --section-flow-space: clamp(0.9rem, 2.5vw, 1.25rem);
+}
+
+html[data-theme="dark"] {
+  --bg: #111417;
+  --bg-alt: #172026;
+  --surface: #1f2a32;
+  --text: #ecf2f2;
+  --muted: #b5c4c8;
+  --line: #36505c;
+  --primary: #eb7a5d;
+  --primary-strong: #d2664a;
+  --secondary: #7bd3ca;
+  --focus: #ffd58f;
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Alternate preset hint: switch to olive/cream by changing --primary, --secondary, --bg values above. */
