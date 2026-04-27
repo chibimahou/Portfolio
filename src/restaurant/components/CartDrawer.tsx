@@ -1,4 +1,5 @@
-import { FormEvent, useMemo, useRef, useState } from "react";
+import type { FormEvent } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFocusTrap } from "../hooks/useFocusTrap";
 import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
