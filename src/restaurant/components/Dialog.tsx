@@ -1,4 +1,5 @@
-import { ReactNode, useRef } from "react";
+import type { ReactNode } from "react";
+import { useRef } from "react";
 import { useFocusTrap } from "../hooks/useFocusTrap";
 import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
 

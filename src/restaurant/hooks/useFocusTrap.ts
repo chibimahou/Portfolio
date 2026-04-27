@@ -1,4 +1,5 @@
-import { RefObject, useEffect } from "react";
+import type { RefObject } from "react";
+import { useEffect } from "react";
 
 const selector = [
   "button:not([disabled])",
@@ -10,7 +11,7 @@ const selector = [
 ].join(",");
 
 export function useFocusTrap(
-  containerRef: RefObject<HTMLElement>,
+  containerRef: RefObject<HTMLElement | null>,
   isActive: boolean,
   onEscape?: () => void
 ): void {

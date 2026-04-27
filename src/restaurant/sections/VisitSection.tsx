@@ -1,4 +1,5 @@
-import { FormEvent, useMemo, useState } from "react";
+import type { FormEvent } from "react";
+import { useMemo, useState } from "react";
 import { faqItems, hours, restaurant } from "../data/mockData";
 import type { FaqItem } from "../types/models";
 
